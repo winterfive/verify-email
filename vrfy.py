@@ -34,8 +34,6 @@ def main():
 		s.connect((ip, 25))
 		# Receive the result
 		banner = s.recv(1024)
-		if banner is None:
-			raise Exception
 		print banner
 		s.send('VRFY ' + email + '\r\n') 
 		result = s.recv(1024)
