@@ -18,7 +18,7 @@ def main():
 		with open(sys.argv[2]) as f:
 			data = f.readlines()
 			for line in data:				
-				lookUp(line)	
+				lookUp(line)
 	
 	#
 	# checks if email address is valid
@@ -29,15 +29,15 @@ def main():
 		try:
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		except socket.error as err:
-			print "socket creation failed with error %s" %(err)
+			print("socket creation failed with error %s", err)
 		# Connect to the Server
 		s.connect((ip, 25))
 		# Receive the result
 		banner = s.recv(1024)
-		print banner
+		print(banner)
 		s.send('VRFY ' + email + '\r\n') 
 		result = s.recv(1024)
-		print "%s: %s" % (email, result)
+		print("%s: %s", email, result)
 		# Close the socket
 		s.close()
 		
