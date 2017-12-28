@@ -30,9 +30,14 @@ def main():
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         except socket.error as err:
-            print("socket creation failed with error %s", err)
+            print("socket creation failed with error: %s", err)
+            sys.exit(1)
         # Connect to the Server
-        s.connect((ip, 25))
+        try:
+            s.connect((ip, 25))
+        except socket.error, err:
+            print ("socket connection failed with error: %s", err)
+            sys.exit(1)
         # Receive the result
         banner = s.recv(1024)
         print(banner)
@@ -42,7 +47,6 @@ def main():
         # Close the socket
         s.close()
         return
-
 
 if __name__ == "__main__":
     main()
