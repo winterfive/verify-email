@@ -30,20 +30,20 @@ def main():
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         except socket.error as err:
-            print("socket creation failed with error: %s", err)
+            print("socket creation failed with error: %s" % err)
             sys.exit(1)
         # Connect to the Server
         try:
             s.connect((ip, 25))
         except socket.error, err:
-            print ("socket connection failed with error: %s", err)
+            print ("socket connection failed with error: %s" % err)
             sys.exit(1)
         # Receive the result
         banner = s.recv(1024)
         print(banner)
         s.send('VRFY ' + email + '\r\n')
         result = s.recv(1024)
-        print("%s: %s", email, result)
+        print("%s: %s" % (email, result))
         # Close the socket
         s.close()
         return
